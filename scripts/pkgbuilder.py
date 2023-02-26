@@ -589,7 +589,7 @@ class Builder:
             meminfo = self.getMemory()
 
             print("%d %06d %5s %5s %5s %3s %4s %9d %2d %s" % (now, now - self.build_start, \
-                  loadavg[0], loadavg[1], loadavg[2], procs[0], procs[1], meminfo["MemAvailable"], \
+                  loadavg[0], loadavg[1], loadavg[2], procs[0], procs[1], meminfo["MemFree"], \
                   self.generator.activeJobCount(), ",".join(self.generator.activeJobNames())), \
                   file=self.loadstatsfile, flush=True)
 
@@ -607,7 +607,7 @@ class Builder:
                 percent = "100"
             loadavg = self.getLoad()
             meminfo = self.getMemory()
-            available = int(meminfo["MemAvailable"]) / 1024
+            available = int(meminfo["MemFree"]) / 1024
 
             lines = [ "",
                       "%s: %5s%% | load: %s mem: %d MB | failed: %d idle: %d active: %d" % \
